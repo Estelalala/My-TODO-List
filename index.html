@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>My TODO List</title>
     <script src="https://unpkg.com/vue@next"></script>
     <script src="https://kit.fontawesome.com/41acb2f584.js" crossorigin="anonymous"></script>
     <style>
@@ -16,6 +16,9 @@
             font-size: 16px;
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(#68EACC, #497BE8);
+        }
+        ::-webkit-scrollbar {
+            width: 0px;
         }
         #app {
             background: #fff;
@@ -218,7 +221,7 @@
         <div class="listField">
             <ul>
                 <div v-for="item, index in items" class="urgent" :class="{completed: item.isCompleted, hide: !showCompleted && item.isCompleted}">
-                    <li v-if="!item.isCompleted && item.isUrgent" @dblclick="editing(index)">
+                    <li v-show="!item.isCompleted && item.isUrgent" @dblclick="editing(index)">
                         <input type="checkbox" v-model="item.isCompleted" :id="index">
                         <label :for="index">
                             <span :index="index">{{ item.text }}</span>
@@ -232,7 +235,7 @@
                     </li>
                 </div>
                 <div v-for="item, index in items" :class="{completed: item.isCompleted, hide: !showCompleted && item.isCompleted}">
-                    <li v-if="!item.isCompleted && !item.isUrgent" @dblclick="editing(index)">
+                    <li v-show="!item.isCompleted && !item.isUrgent" @dblclick="editing(index)">
                         <input type="checkbox" v-model="item.isCompleted" :id="index">
                         <label :for="index">
                             <span :index="index">{{ item.text }}</span>
@@ -246,7 +249,7 @@
                     </li>
                 </div>
                 <div v-for="item, index in items" :class="{completed: item.isCompleted, hide: !showCompleted && item.isCompleted}">
-                    <li v-if="item.isCompleted" @dblclick="editing(index)">
+                    <li v-show="item.isCompleted" @dblclick="editing(index)">
                         <input type="checkbox" v-model="item.isCompleted" :id="index">
                         <label :for="index">
                             <span :index="index">{{ item.text }}</span>
