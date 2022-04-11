@@ -222,7 +222,7 @@
         <div class="listField">
             <ul>
                 <div v-for="item, index in items" class="urgent" :class="{completed: item.isCompleted, hide: !showCompleted && item.isCompleted}">
-                    <li v-show="!item.isCompleted && item.isUrgent" @dblclick="editing(index)">
+                    <li v-if="!item.isCompleted && item.isUrgent" @dblclick="editing(index)">
                         <input type="checkbox" v-model="item.isCompleted" :id="index">
                         <label :for="index">
                             <span :index="index">{{ item.text }}</span>
@@ -236,7 +236,7 @@
                     </li>
                 </div>
                 <div v-for="item, index in items" :class="{completed: item.isCompleted, hide: !showCompleted && item.isCompleted}">
-                    <li v-show="!item.isCompleted && !item.isUrgent" @dblclick="editing(index)">
+                    <li v-if="!item.isCompleted && !item.isUrgent" @dblclick="editing(index)">
                         <input type="checkbox" v-model="item.isCompleted" :id="index">
                         <label :for="index">
                             <span :index="index">{{ item.text }}</span>
@@ -250,7 +250,7 @@
                     </li>
                 </div>
                 <div v-for="item, index in items" :class="{completed: item.isCompleted, hide: !showCompleted && item.isCompleted}">
-                    <li v-show="item.isCompleted" @dblclick="editing(index)">
+                    <li v-if="item.isCompleted" @dblclick="editing(index)">
                         <input type="checkbox" v-model="item.isCompleted" :id="index">
                         <label :for="index">
                             <span :index="index">{{ item.text }}</span>
